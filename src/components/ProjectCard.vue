@@ -16,9 +16,9 @@ export default {
 
 <template>
         <div class="col-auto">
-            <div class="card" style="width: 18rem; min-height: 600px;">
+            <div class="card" style="width: 18rem; height: 800px;">
                 <div class="img-container">
-                    <img :src="basePath+singleProject.cover_img" class="card-img-top w-100 object-fit-contain" alt="...">
+                    <img :src="basePath+singleProject.cover_img" class="card-img-top w-100 h-100 object-fit-cover" alt="...">
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ singleProject.title }}</h5>
