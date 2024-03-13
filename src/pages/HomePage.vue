@@ -25,21 +25,20 @@ export default {
             })
             .then((response)=>{
                 this.projects = response.data.results.data;
+                console.log(this.projects);
 
             }); 
         },
         
         goToPrevPage(){
             if (this.currentPage > 1) {
-                this.getDataFromApi(this.currentPage -1)
-                console.log('prev')
+                this.getDataFromApi(--this.currentPage)
             }
         },
 
         goToNextPage(){
             if (this.currentPage < this.lastPage){
-                this.getDataFromApi(this.currentPage +1)
-                console.log('next')
+                this.getDataFromApi(++this.currentPage)
             }
         }
     },
