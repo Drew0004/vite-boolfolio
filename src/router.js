@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from './pages/HomePage.vue';
 import ProjectsIndex from './pages/ProjectsIndex.vue';
+import SingleProject from './pages/SingleProject.vue';
+import ErrorPage from './pages/ErrorPage.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -14,6 +16,16 @@ const router = createRouter({
             path: '/projects',
             name: 'projects.index',
             component: ProjectsIndex,
+        },
+        {
+            path: '/project/:slug',
+            name: 'projects.show',
+            component: SingleProject,
+        },
+        {
+            path: '/error',
+            name: 'not-found',
+            component: ErrorPage,
         }
     ]
 });

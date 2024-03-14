@@ -50,9 +50,9 @@ export default {
         <h1 class="text-center py-5">Tutti i progetti</h1>
         <div class="container">
             <button class="btn btn-secondary my-3">  
-                    <RouterLink class="text-white text-decoration-none" :to="{name: 'home' }">
-                        Torna alla Homepage
-                    </RouterLink>
+                <RouterLink class="text-white text-decoration-none" :to="{name: 'home' }">
+                    Torna alla Homepage
+                </RouterLink>
             </button>
             <div class="row">
                 <ProjectCard v-for="(singleProject, i) in projects" :key="i" :singleProject="singleProject"/>

@@ -17,8 +17,11 @@ export default {
 <template>
         <div class="col-auto">
             <div class="card" style="width: 18rem; height: 800px;">
-                <div class="img-container">
+                <div v-if="singleProject.cover_img != null" class="img-container">
                     <img :src="basePath+singleProject.cover_img" class="card-img-top w-100 h-100 object-fit-cover" alt="...">
+                </div>
+                <div v-else>
+                    <h2 class="card-img-top text-center mt-1">Not found</h2>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ singleProject.title }}</h5>
@@ -31,7 +34,11 @@ export default {
                         <span class="badge text-bg-success">{{ singleProject.type.title }}</span>
                     </div>
                     
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <button class="btn btn-primary">
+                        <RouterLink class="text-white text-decoration-none" :to="{name: 'projects.show', params:{slug: singleProject.slug} }">
+                            Mostra
+                        </RouterLink>
+                    </button>
                 </div>
             </div>
         </div>
