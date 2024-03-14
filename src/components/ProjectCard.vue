@@ -27,8 +27,8 @@ export default {
                     <h5 class="card-title">{{ singleProject.title }}</h5>
                     
                     <p class="card-text">{{ singleProject.description }}</p>
-                    <div class="py-1" v-for="singleTechnology in singleProject.technologies">
-                        <span class="badge text-bg-primary">{{ singleTechnology.title }}</span>
+                    <div class="py-1 d-flex flex-wrap">
+                        <span v-for="singleTechnology in singleProject.technologies" class="badge text-bg-primary me-1 my-1">{{ singleTechnology.title }}</span>
                     </div>
                     <div class="py-1">
                         <span class="badge text-bg-success">{{ singleProject.type.title }}</span>
