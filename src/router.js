@@ -3,6 +3,7 @@ import HomePage from './pages/HomePage.vue';
 import ProjectsIndex from './pages/ProjectsIndex.vue';
 import SingleProject from './pages/SingleProject.vue';
 import ContactPage from './pages/ContactPage.vue';
+import SuccessPage from './pages/SuccessPage.vue';
 import ErrorPage from './pages/ErrorPage.vue';
 
 const router = createRouter({
@@ -27,6 +28,11 @@ const router = createRouter({
             path: '/contacts',
             name: 'contacts',
             component: ContactPage,
+        },
+        {
+            path: '/success',
+            name: 'success',
+            component: SuccessPage,
         },
         {
             path: '/:pathMatch(.*)*',

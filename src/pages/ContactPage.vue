@@ -8,7 +8,8 @@ export default {
             lastname: '',
             email: '',
             message: '',
-            accepted : false
+            accepted : false,
+            messageSent: false
         };
     },
     components:{
@@ -43,8 +44,25 @@ export default {
                 this.accepted
             )
             {
-                axios.post('http://127.0.0.1:8000/api/contacts')
-                    .then()
+                axios.post('http://127.0.0.1:8000/api/contacts',{
+                    firstname: this.firstname,
+                    lastname: this.lastname,
+                    email: this.email,
+                    message: this.message,
+                    accepted: this.accepted
+                })
+                    .then(res=>{
+
+                        console.log(res.data)
+                        if(res.data.success){
+                            this.messageSent = true
+                        }
+                    }
+                    )
+                    .catch(err=>{
+                        alert('Errore! Chiamata in errore.')
+                    }
+                    )
             }
             else{
                 alert('Errore! Inserisci i dati correttamente')
@@ -56,52 +74,72 @@ export default {
 
 <template>
     <div class="container">
-        <h2 class="text-center my-4">Contattami</h2>
-        <form action="" method="POST" @submit.prevent="sendDataToApi()">
-            <div class="mb-3">
-                <label for="firstname" class="form-label">Nome</label>
-                <input v-model="firstname" type="text" class="form-control" id="firstname" name="firstname" placeholder="Inserisci il tuo nome..." required maxlength="74">
-            </div>
-
-            <div class="mb-3">
-                <label for="lastname" class="form-label">Cognome</label>
-                <input v-model="lastname" type="text" class="form-control" id="lastname" name="lastname" placeholder="Inserisci il tuo cognome..." required maxlength="74">
-            </div>
-
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <div class="input-group">
-                    <input v-model="email" type="email" class="form-control" id="email" name="email" placeholder="Inserisci la tua mail..." aria-describedby="basic-addon1" required maxlength="255">
-                    <span class="input-group-text" id="basic-addon1">@</span>
+        <div v-if="messageSent == false">
+            <h2 class="text-center my-4">Contattami</h2>
+            <form action="" method="POST" @submit.prevent="sendDataToApi()">
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">Nome</label>
+                    <input v-model="firstname" type="text" class="form-control" id="firstname" name="firstname" placeholder="Inserisci il tuo nome..." required maxlength="74">
                 </div>
-            </div>
-
-            <div class="mb-3">
-                <label for="message" class="form-label">Messaggio:</label>
-                <textarea v-model="message" class="form-control" id="message" name="message" rows="3" required maxlength="1024"></textarea>
-            </div>
-
-            <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="accepted" required>
-                <label class="form-check-label fs-em fw-light" for="exampleCheck1">
-                    Accetto l'informativa sulla <a href="#nogo">privacy policy</a>  e sul  <a href="#nogo">trattamento dei dati</a>
-                </label>
-            </div>
-
-            <div class="row my-4 g-0 justify-content-between">
-                <div class="col-auto">
-                    <button class="btn btn-secondary">
-                        <RouterLink class="text-white text-decoration-none" :to="{name: 'home' }">
-                            Torna alla Home
-                        </RouterLink>
-                    </button>
+    
+                <div class="mb-3">
+                    <label for="lastname" class="form-label">Cognome</label>
+                    <input v-model="lastname" type="text" class="form-control" id="lastname" name="lastname" placeholder="Inserisci il tuo cognome..." required maxlength="74">
                 </div>
-
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary">Invia</button>
+    
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <div class="input-group">
+                        <input v-model="email" type="email" class="form-control" id="email" name="email" placeholder="Inserisci la tua mail..." aria-describedby="basic-addon1" required maxlength="255">
+                        <span class="input-group-text" id="basic-addon1">@</span>
+                    </div>
                 </div>
+    
+                <div class="mb-3">
+                    <label for="message" class="form-label">Messaggio:</label>
+                    <textarea v-model="message" class="form-control" id="message" name="message" rows="3" required maxlength="1024"></textarea>
+                </div>
+    
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="accepted" required>
+                    <label class="form-check-label fs-em fw-light" for="exampleCheck1">
+                        Accetto l'informativa sulla <a href="#nogo">privacy policy</a>  e sul  <a href="#nogo">trattamento dei dati</a>
+                    </label>
+                </div>
+    
+                <div class="row my-4 g-0 justify-content-between">
+                    <div class="col-auto">
+                        <button class="btn btn-secondary">
+                            <RouterLink class="text-white text-decoration-none" :to="{name: 'home' }">
+                                Torna alla Home
+                            </RouterLink>
+                        </button>
+                    </div>
+    
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">
+                            Invia &#8677
+                        </button>
+                        
+                        <!-- <button type="submit" class="btn btn-primary">
+                            <RouterLink class="text-white text-decoration-none" :to="{name: 'success' }">
+                                Invia &#8677
+                            </RouterLink>
+                        </button> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div v-else>
+            <h2 class="text-center text-success">Dati inviati con successo!</h2>
+            <div class="text-center my-3">
+                <button class="btn btn-secondary">  
+                    <RouterLink class="text-white text-decoration-none" :to="{name: 'home' }">
+                        Torna alla Homepage
+                    </RouterLink>
+                </button>
             </div>
-        </form>
+        </div>
     </div>
 </template>
 
