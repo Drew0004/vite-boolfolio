@@ -2,7 +2,20 @@
 export default {
     data() {
         return {
-
+            links: [
+                {
+                    routeName: 'home',
+                    label: 'Home',
+                },
+                {
+                    routeName: 'projects.index',
+                    label: 'Tutti i progetti',
+                },
+                {
+                    routeName: 'contacts',
+                    label: 'Contatti',
+                }
+            ]
         };
     },
     methods: {
@@ -16,21 +29,16 @@ export default {
         <div class="container">
             <nav>
                 <ul class="d-flex justify-content-between align-items-center py-3">
-                    <li> 
-                        <RouterLink class="text-white text-decoration-none" :to="{name: 'home' }">
-                            Home
+                    <li v-for="(singleLink, i) in links">
+                        <RouterLink class="text-white text-decoration-none" :to="{name: singleLink.routeName }">
+                            {{ singleLink.label }}
                         </RouterLink>
                     </li>
-                    <li>
-                        <RouterLink class="text-white text-decoration-none" :to="{name: 'projects.index' }">
-                            Tutti i progetti
-                        </RouterLink>
-                    </li>
-                    <li>
+                    <!-- <li>
                         <RouterLink class="text-white text-decoration-none" :to="{name: 'contacts' }">
                             Contatti
                         </RouterLink>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
         </div>
