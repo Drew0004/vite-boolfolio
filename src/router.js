@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from './pages/HomePage.vue';
 import ProjectsIndex from './pages/ProjectsIndex.vue';
 import SingleProject from './pages/SingleProject.vue';
+import ContactPage from './pages/ContactPage.vue';
 import ErrorPage from './pages/ErrorPage.vue';
 
 const router = createRouter({
@@ -23,7 +24,12 @@ const router = createRouter({
             component: SingleProject,
         },
         {
-            path: '/error',
+            path: '/contacts',
+            name: 'contacts',
+            component: ContactPage,
+        },
+        {
+            path: '/:pathMatch(.*)*',
             name: 'not-found',
             component: ErrorPage,
         }

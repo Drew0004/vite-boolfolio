@@ -26,6 +26,11 @@ export default {
                             Tutti i progetti
                         </RouterLink>
                     </li>
+                    <li>
+                        <RouterLink class="text-white text-decoration-none" :to="{name: 'contacts' }">
+                            Contatti
+                        </RouterLink>
+                    </li>
                 </ul>
             </nav>
         </div>
